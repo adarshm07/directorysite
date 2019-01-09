@@ -12,7 +12,7 @@
 					$drow=mysqli_fetch_array($del);
 				?>
 				<div class="container-fluid">
-					<h5><center>Firstname: <strong><?php echo $drow['fname']; ?></strong></center></h5> 
+					<h5><center>Firstname: <strong><?php echo $drow['fname']. ' ' .$drow['lname']; ?></strong></center></h5>
                 </div> 
 				</div>
                 <div class="modal-footer">
