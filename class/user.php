@@ -405,7 +405,7 @@ class User{
         header("location: ./dist_.php");
     }
     $users = [];
-	if($_SESSION['user']['user_role'] == 1){
+	if($_SESSION['user']['user_role'] == 'user'){
         $users = $this->listUsers();
         header("location: ./user");
       

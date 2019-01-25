@@ -34,6 +34,7 @@ if($_SESSION["user"] != true) {
         <link rel="stylesheet" id="css-ionicons" href="./user/assets/css/ionicons.css" />
         <link rel="stylesheet" id="css-bootstrap" href="css/bootsp.css" />
         <link rel="stylesheet" type="text/css" href="./dist/upload_style.css">
+        
         <!-- End Stylesheets -->
         <script type="text/javascript" src="./dist/assets/js/core/jquery.min.js"></script>
         <script type="text/javascript" src="./dist/upload_script.js"></script>
@@ -65,6 +66,40 @@ $(document).ready(function(){
         </div>
 <hr width="90%" align="center">
 <div class="container">
+<?php
+//Establishing Connection with Server
+$connection = mysqli_connect("localhost", "root", "");
+//$userid = isset($_POST['userid']) ? $_POST['userid'] : '';
+//$_SESSION['user']['id']=$userid;
+
+//Selecting Database from Server
+$db = mysqli_select_db($connection, "sms");
+if(isset($_POST['insert'])){
+
+//Fetching variables of the form which travels in URL
+//$userid = isset($_POST['userid']) ? $_POST['userid'] : '';
+
+$list_title = $_POST['list_title'];
+$list_tagline = $_POST['list_tagline'];
+$list_description = $_POST['list_description'];
+$list_location = $_POST['list_location'];
+$list_number = $_POST['list_number'];
+$cname = $_POST['cname'];
+$file = file_get_contents($_FILES["image"]["tmp_name"]);  
+
+if($list_title !=''||$list_location !=''){
+//Insert Query of SQL
+$query = mysqli_query($connection, "insert into list(list_title, list_tagline, list_description, list_location, list_number, cname, name) values ('$list_title', '$list_tagline', '$list_description', '$list_location', '$list_number', '$cname', '$file')");
+echo "<div class='alert alert-info'>Data Inserted successfully.</div>";
+}
+else{
+echo "<div class='alert alert-info'>Insertion Failed, Some Fields are Blank.</div>";   
+}
+
+}
+//Closing Connection with Server
+mysqli_close($connection);
+?>
 <div class="row" style="background-color: white; margin: 20px; padding: 40px; border-radius: 4px;">
     <div class="col-sm-6">
             <div class="jumbotron" style="margin:10px; padding: 20px; background-color: rgb(229, 251, 253);">
@@ -73,7 +108,7 @@ $(document).ready(function(){
 </div>
 <br>
 <br>
-<form action="listing-row.php" method="post">
+<form action="listing-row.php" method="post" enctype="multipart/form-data">
                 <input type="text" name="list_number" class="form-control margin-bottom-10 error-msg" placeholder="Phone Number">
                 <textarea rows="5" cols="25" placeholder="Description" class="form-control margin-bottom-10 error-msg" name="list_description"></textarea>
     
@@ -84,6 +119,9 @@ $(document).ready(function(){
             <label for="usr">Title <small>*</small></label>
             <input type="text" name="list_title" class="form-control margin-bottom-10 error-msg" placeholder="Name of Your Business">
             <input type="text" name="list_tagline" class="form-control margin-bottom-10 error-msg" placeholder="Tagline">
+            <div class="form-group">
+            <input type="file" name="image" id="image" />
+          </div>
             <?php
 include ('./conn.php');
 $result = mysqli_query($conn, "SELECT * FROM `categories` ORDER BY `categories`.`cname` ASC");
@@ -205,41 +243,35 @@ mysqli_close($conn);
 
 <div class="col-sm-6">
 <div class="row">
+
+
                 <br />
-                <input class="btn-lg btn-success" style="float: right;" type="submit" name="submit" value="Submit" />
+                <input class="btn btn-success" style="float: right;" type="submit" name="insert" id="insert" value="Submit" />
+                <br><br>
 
-<?php
-//Establishing Connection with Server
-$connection = mysqli_connect("localhost", "root", "");
-
-//Selecting Database from Server
-$db = mysqli_select_db($connection, "sms");
-if(isset($_POST['submit'])){
-
-//Fetching variables of the form which travels in URL
-
-$list_title = $_POST['list_title'];
-$list_tagline = $_POST['list_tagline'];
-$list_description = $_POST['list_description'];
-$list_location = $_POST['list_location'];
-$list_number = $_POST['list_number'];
-$cname = $_POST['cname'];
-
-if($list_title !=''||$list_location !=''){
-//Insert Query of SQL
-$query = mysqli_query($connection, "insert into list(list_title, list_tagline, list_description, list_location, list_number, cname) values ('$list_title', '$list_tagline', '$list_description', '$list_location', '$list_number', '$cname')");
-echo "<br/><br/><span>Data Inserted successfully...!!</span>";
-}
-else{
-echo "<p>Insertion Failed <br/> Some Fields are Blank....!!</p>";   
-}
-
-}
-//Closing Connection with Server
-mysqli_close($connection);
-?>
-
-            </form>
+</form>
     </div>
 </div>
 </div>
+<script>  
+ $(document).ready(function(){  
+      $('#insert').click(function(){  
+           var image_name = $('#image').val();  
+           if(image_name == '')  
+           {  
+                alert("Please Select Image");  
+                return false;  
+           }  
+           else  
+           {  
+                var extension = $('#image').val().split('.').pop().toLowerCase();  
+                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+                {  
+                     alert('Invalid Image File');  
+                     $('#image').val('');  
+                     return false;  
+                }  
+           }  
+      });  
+ });  
+ </script>

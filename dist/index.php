@@ -170,7 +170,7 @@ session_start();
                                             <p class="h3 m-t-sm m-b-0">
                                                 <?php
                                                 $connection = mysqli_connect('localhost', 'root', '', 'sms');
-                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM users where user_role='1'");
+                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM users where user_role='user'");
                                                 while ($row = mysqli_fetch_array($result)) {
                                                 $var = $row['count'];
                                                 echo $var. "";
@@ -249,7 +249,7 @@ session_start();
 			<?php
 				
 				$conn = mysqli_connect('localhost', 'root', '', 'sms');
-				$query=mysqli_query($conn,"select * from `users` where user_role='1'");
+				$query=mysqli_query($conn,"select * from `users` where user_role='user'");
 				while($row=mysqli_fetch_array($query)){
                     ?>
 					<tr>

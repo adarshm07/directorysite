@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 /*
 App.css
 Template name: AppUI
 Author: rustheme
-=======
-/*
-App.css
-Template name: AppUI
-Author: rustheme
->>>>>>> 2c2dc1c5121cc201c8f149d083fdf4c31d93bd94
 */
 .app-ui-mask-disable-scroll {
 	overflow-y: hidden;
@@ -2886,7 +2879,6 @@ div.tagsinput span.tag a:hover {
 	background-color: rgba(0, 0, 0, 0.75) !important;
 }
 
-<<<<<<< HEAD
 /* Easy Pie Chart
 .pie-chart {
 	position: relative;
@@ -2900,21 +2892,6 @@ div.tagsinput span.tag a:hover {
 	}
 }
 
-=======
-/* Easy Pie Chart
-.pie-chart {
-	position: relative;
-	display: inline-block;
-
-	> span {
-		margin-top: -4px;
-		right: 0;
-		left: 0;
-		text-align: center;
-	}
-}
-
->>>>>>> 2c2dc1c5121cc201c8f149d083fdf4c31d93bd94
 /* Flot Charts */
 .flot-tooltip {
 	position: absolute;

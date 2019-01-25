@@ -10,9 +10,9 @@ if(isset($_POST['submit'])){
 
 $approve = $_POST['approve'];
 
-if($approve !=''){
+if($approve!=''){
 //Insert Query of SQL
-$query = mysqli_query($connection, "insert into list(approve) values ('$approve')");
+$query = mysqli_query($connection, "insert into list(approve) values('$approve') where id='$id'");
 echo "<br/><br/><span>Data Inserted successfully...!!</span>";
 }
 else{

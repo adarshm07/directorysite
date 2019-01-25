@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 let menuIcon = document.querySelector('.menuIcon');
         let nav = document.querySelector('.overlay-menu');
 
@@ -22,29 +21,4 @@ let menuIcon = document.querySelector('.menuIcon');
             } else {
                 toggleIcon.className = 'menuIcon';
             }
-=======
-let menuIcon = document.querySelector('.menuIcon');
-        let nav = document.querySelector('.overlay-menu');
-
-        menuIcon.addEventListener('click', () => {
-            if (nav.style.transform != 'translateX(0%)') {
-                nav.style.transform = 'translateX(0%)';
-                nav.style.transition = 'transform 0.2s ease-out';
-            } else { 
-                nav.style.transform = 'translateX(-100%)';
-                nav.style.transition = 'transform 0.2s ease-out';
-            }
-        });
-
-
-        // Toggle Menu Icon ========================================
-        let toggleIcon = document.querySelector('.menuIcon');
-
-        toggleIcon.addEventListener('click', () => {
-            if (toggleIcon.className != 'menuIcon toggle') {
-                toggleIcon.className += ' toggle';
-            } else {
-                toggleIcon.className = 'menuIcon';
-            }
->>>>>>> 8b0a5556a3d49d317d3da43a426807416db28832
         });

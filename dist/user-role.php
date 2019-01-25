@@ -166,7 +166,7 @@ session_start();
                                             <p class="h3 m-t-sm m-b-0">
                                                 <?php
                                                 $connection = mysqli_connect('localhost', 'root', '', 'sms');
-                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM users where user_role='1'");
+                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM users where user_role='user'");
                                                 while ($row = mysqli_fetch_array($result)) {
                                                 $var = $row['count'];
                                                 echo $var. "";
@@ -242,9 +242,9 @@ if(isset($_POST['submit'])){
 $id = isset($_POST['id']) ? $_POST['id'] : '';
 $user_role = isset($_POST['user_role']) ? $_POST['user_role'] : '';
 
-if($user_role !=''){
+if($user_role != 'useradmin'){
 //Insert Query of SQL
-$query = mysqli_query($connection, "update users set user_role='$user_role' where id='$id')");
+$query = mysqli_query($connection, "UPDATE users SET user_role = '$user_role' where id = '$id'");
 echo " 
 <div class='alert alert-info' style='padding: 20px; margin: 20px;'>
 <span>Updated.</span> 
@@ -257,9 +257,8 @@ echo "
 }
 
 }
-//Closing Connection with Server
-mysqli_close($connection);
 ?>
+
                                     <thead>
                                         <tr>
                                             <th class="text-center">User ID</th>
@@ -281,12 +280,13 @@ mysqli_close($connection);
                                                         <td><?php echo $row['fname'] .' '. $row['lname']; ?></td>
                                                         <td><?php echo $row['email']; ?></td>
                                                         <td>
-                                                        <form action='user-role.php' name='user_role' method='post'>
+                                                        <form action='user-role.php' id='user_role' name='user_role' method='post'>
                                                         
                                                         <select class="form-control margin-bottom-10">
-
-                                                            <option name='user_role' value='2'>Admin</option>
-                                                            <option name='user_role' value='1'>User</option>
+                                                        
+                                                            <option>Current role: <?php echo $row['user_role']; ?></option>
+                                                            <option name='user_role' id='user_role' value='2'>Admin</option>
+                                                            <option name='user_role' id='user_role' value='user'>User</option>
                                                 </select>
                                                         </td>
                                                         <th><input class="btn btn-success" style="float: right;" type="submit" name="submit" value="Submit" /></th>
@@ -346,6 +346,9 @@ $(document).ready(function(){
   });
 });
 </script>
+<?php
+mysqli_close($connection);
+?>
     </body>
 
 </html>

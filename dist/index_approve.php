@@ -1,4 +1,6 @@
 <?php
+require_once 'user.php';
+require_once 'conn.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -254,8 +256,8 @@ session_start();
                                                         <td>
                                                         <form action='index_approve.php' name='approve' method='post'>
                                                         
-                                                        <select class="form-control margin-bottom-10">
-                                                            <option name='approve' value=''><?php echo $row['approve']; ?></option>
+                                                        <select name='approve' class="form-control margin-bottom-10">
+                                                            <option value=''><?php echo $row['approve']; ?></option>
                                                             <option name='approve' value='Approved'>Approved</option>
                                                             <option name='approve' value='Pending'>Pending</option>
                                                             <option name='approve' value='Declined'>Declined</option>
@@ -323,13 +325,12 @@ $db = mysqli_select_db($connection, "sms");
 if(isset($_POST['submit'])){
 
 //Fetching variables of the form which travels in URL
-$id = isset($_POST['id']) ? $_POST['id'] : '';
-$approve = isset($_POST['approve']) ? $_POST['approve'] : '';
-
-if($approve !=''){
+$id = isset($_GET['id']) ? $_GET['id'] : '';
+$approve = isset($_GET['approve']) ? $_GET['approve'] : '';
+if($approve != ''){
 //Insert Query of SQL
-$query = mysqli_query($connection, "update list set approve='$approve' where id='$id')");
-echo "<div class='container'> 
+$query = mysqli_query($connection, "update list set approve = '$approve'");
+echo "<div class='container'>
 <div class='alert alert-info' style='padding: 20px; margin: 20px;'>
 <span>Updated.</span> 
       </div>
@@ -339,7 +340,7 @@ else{
 echo "<div class='container'> 
 <div class='alert alert-info' style='padding: 20px; margin: 20px;'><p>Insertion Failed, Some Fields are Blank.</p>
 </div>
-</div>";   
+</div>";
 }
 
 }
