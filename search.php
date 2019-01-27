@@ -51,7 +51,7 @@
     $query = $_GET['query']; 
     // gets value sent over search form
      
-    $min_length = 3;
+    $min_length = 1;
     // you can set minimum length of the query if you want
      
     if(strlen($query) >= $min_length){ // if query length is more or equal minimum length then
@@ -62,8 +62,8 @@
         /** $query = mysqli_real_escape_string($query); */
         // makes sure nobody uses SQL injection
          
-        $raw_results = mysqli_query($conn, "SELECT * FROM users
-            WHERE (`fname` LIKE '%".$query."%') OR (`email` LIKE '%".$query."%')") or die(mysqli_connect_error());
+        $raw_results = mysqli_query($conn, "SELECT * FROM list
+            WHERE (`list_title` LIKE '%".$query."%') OR (`list_description` LIKE '%".$query."%') OR (`list_location` LIKE '%".$query."%')") or die(mysqli_connect_error());
              
         // * means that it selects all fields, you can also write: `id`, `title`, `text`
         // articles is the name of our table
@@ -73,7 +73,7 @@
         // or if you want to match just full word so "gogohello" is out use '% $query %' ...OR ... '$query %' ... OR ... '% $query'
         
         $sql = ("SELECT COUNT(*) FROM users");
-        $rs = mysqli_query($sql);
+        $rs = mysqli_query($conn, $sql);
          //-----------^  need to run query here
         
          $result = mysqli_fetch_array($rs);
@@ -87,7 +87,7 @@
             while($results = mysqli_fetch_array($raw_results)){
             // $results = mysqli_fetch_array($raw_results) puts data from database into array, while it's valid it does the loop
              
-                echo "<p><h3>".$results['fname']."</h3>".$results['email']."</p>";
+                echo "<p><h3>".$results['list_title']."</h3><br><h4>".$results['list_location']."</h4>".$results['list_description']."</p>";
                 // posts results gotten from database(title and text) you can also show id ($results['id'])
             }
              
@@ -98,7 +98,7 @@
          
     }
     else{ // if query length is less than minimum
-        echo "Minimum length is ".$min_length;
+        echo "Try searching with a keyword.";
     }
 ?>
 </div>

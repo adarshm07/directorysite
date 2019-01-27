@@ -168,7 +168,7 @@ session_start();
                                             <p class="h3 m-t-sm m-b-0">
                                                 <?php
                                                 $connection = mysqli_connect('localhost', 'root', '', 'sms');
-                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM users where user_role='1'");
+                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM users where user_role='user'");
                                                 while ($row = mysqli_fetch_array($result)) {
                                                 $var = $row['count'];
                                                 echo $var. "";
@@ -317,7 +317,7 @@ $(document).ready(function(){
   });
 });
 </script>
-<?php
+ <?php
 //Establishing Connection with Server
 $connection = mysqli_connect("localhost", "root", "");
 //Selecting Database from Server
@@ -329,7 +329,7 @@ $id = isset($_GET['id']) ? $_GET['id'] : '';
 $approve = isset($_GET['approve']) ? $_GET['approve'] : '';
 if($approve != ''){
 //Insert Query of SQL
-$query = mysqli_query($connection, "update list set approve = '$approve'");
+$query = mysqli_query($connection, "UPDATE 'list' SET 'approve'= '$approve' WHERE 'id' = '$id' ");
 echo "<div class='container'>
 <div class='alert alert-info' style='padding: 20px; margin: 20px;'>
 <span>Updated.</span> 
@@ -338,7 +338,7 @@ echo "<div class='container'>
 }
 else{
 echo "<div class='container'> 
-<div class='alert alert-info' style='padding: 20px; margin: 20px;'><p>Insertion Failed, Some Fields are Blank.</p>
+<div class='alert alert-info' style='padding: 20px; margin: 20px;'><p>Cannot update the user role.</p>
 </div>
 </div>";
 }
