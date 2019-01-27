@@ -1,3 +1,11 @@
+<?php
+require_once 'class/user.php';
+require_once 'config.php';
+
+if($_SESSION["user"] == true) {
+    header('Location: ./index_.php');
+}
+?>
 <html>
 <head>
 <title>Thalassery</title>

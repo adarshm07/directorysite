@@ -36,10 +36,21 @@
       <li class=""><a href="./about.html">About</a></li>
       <li><a href="./contact.html">Contact</a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="./signup_.php"> Sign Up</a></li>
-      <li><a href="./login_.php">Login</a></li>
-      <!--<li class="button-navbar"><a href="./add-listing.php"><i class=""></i> Add Listing</a></li>-->
+    <?php
+require_once 'class/user.php';
+require_once 'config.php';
+
+if($_SESSION['user'] == true) {
+    echo("<ul class='nav navbar-nav navbar-right'>
+    <li><a href='./dist'>Dashboard</a></li>
+    <li><a href='./logout.php'>Logout</a></li>");
+    }
+    else{
+        echo("<ul class='nav navbar-nav navbar-right'>
+        <li><a href='./signup_.php'> Sign Up</a></li>
+        <li><a href='./login_.php'>Login</a></li>");  
+    }
+    ?>
     </ul>
   </div>
   </div>

@@ -7,6 +7,8 @@ if($_SESSION["user"] != true) {
     header('Location: login_.php');
 }
 
+// Turn off all error reporting
+error_reporting(0);
 ?>
 <!DOCTYPE html>
 
@@ -45,27 +47,26 @@ $(document).ready(function(){
 </script>
     </head>
     <body style="background-color:rgb(250, 248, 248);">
-    <nav class="navbar navbar-default">
-  <div class="container-fluid">
+    <nav class="navbar-fixed-top navbar-default">
+  <div class="container-fluid" >
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="./">Ty<div id="background"></div>
+    </a>
     </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
+      <li class="active"><a href="./">Home</a></li>
+      <li class=""><a href="./about.html">About</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="./dist">Dashboard</a></li>
+      <li><a href="./logout.php">Logout</a></li>
     </ul>
   </div>
+  </div>
 </nav>
-    
-            <div class="container"> 
-            <div class="alert alert-info" style="padding: 20px; margin: 20px;">
-                    <strong>Returning User?</strong> Please <b>Sign In</b> and if you are a New User, Continue Below and <b>register</b> along with this submission.
-                  </div>
-        </div>
-<hr width="90%" align="center">
-<div class="container">
+<div class="container" style="margin: 60px;">
 <?php
 //Establishing Connection with Server
 $connection = mysqli_connect("localhost", "root", "");
@@ -85,7 +86,7 @@ $list_description = $_POST['list_description'];
 $list_location = $_POST['list_location'];
 $list_number = $_POST['list_number'];
 $cname = $_POST['cname'];
-$file = file_get_contents($_FILES["image"]["tmp_name"]);  
+$file = file_get_contents($_FILES["image"]["tmp_name"]);
 
 if($list_title !=''||$list_location !=''){
 //Insert Query of SQL
@@ -109,16 +110,15 @@ mysqli_close($connection);
 <br>
 <br>
 <form action="listing-row.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="list_number" class="form-control margin-bottom-10 error-msg" placeholder="Phone Number">
-                <textarea rows="5" cols="25" placeholder="Description" class="form-control margin-bottom-10 error-msg" name="list_description"></textarea>
+                <input type="text" name="list_number" class="form-control margin-bottom-10 error-msg" value="<?php if (isset($_POST['list_number'])) echo $_POST['list_number']; ?>" placeholder="Phone Number">
+                <textarea rows="5" cols="25" placeholder="Description" class="form-control margin-bottom-10 error-msg" name="list_description" value="<?php if (isset($_POST['list_description'])) echo $_POST['list_description']; ?>"></textarea>
     
             </div>
     <div class="col-sm-6">
                 <!--Title-->
             <a href="#" data-toggle="tooltip" data-placement="top" title="Name of the Business"></a>
             <label for="usr">Title <small>*</small></label>
-            <input type="text" name="list_title" class="form-control margin-bottom-10 error-msg" placeholder="Name of Your Business">
-            <input type="text" name="list_tagline" class="form-control margin-bottom-10 error-msg" placeholder="Tagline">
+            <input type="text" name="list_title" class="form-control margin-bottom-10 error-msg" value="<?php if (isset($_POST['list_tagline'])) echo $_POST['list_tagline']; ?>" placeholder="Tagline">
             <div class="form-group">
             <input type="file" name="image" id="image" />
           </div>
@@ -243,10 +243,7 @@ mysqli_close($conn);
 
 <div class="col-sm-6">
 <div class="row">
-
-
-                <br />
-                <input class="btn btn-success" style="float: right;" type="submit" name="insert" id="insert" value="Submit" />
+<input class="btn btn-success" style="float: right;" type="submit" name="insert" id="insert" value="Submit" />
                 <br><br>
 
 </form>
