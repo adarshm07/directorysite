@@ -254,7 +254,7 @@ session_start();
                                                         <td><?php echo $row['list_title']; ?></td>
                                                         <td><?php echo $row['list_description']; ?></td>
                                                         <td>
-                                                        <form action='index_approve.php' name='approve' method='post'>
+                                                        <form action='db.php' name='approve' method='post'>
                                                         
                                                         <select name='approve' class="form-control margin-bottom-10">
                                                             <option value=''><?php echo $row['approve']; ?></option>

@@ -1,26 +1,30 @@
 <?php
-include ('conn.php');
-$id=$_GET['id'];
-$connection = mysqli_connect("localhost", "root", "");
-//Selecting Database from Server
-$db = mysqli_select_db($connection, "sms");
-if(isset($_POST['submit'])){
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "sms";
 
-//Fetching variables of the form which travels in URL
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $approve='approve';
+    $id='id';
+    $sql = "UPDATE list SET approve='Approved'";
 
-$approve = $_POST['approve'];
+    // Prepare statement
+    $stmt = $conn->prepare($sql);
 
-if($approve!=''){
-//Insert Query of SQL
-$query = mysqli_query($connection, "insert into list(approve) values('$approve') where id='$id'");
-echo "<br/><br/><span>Data Inserted successfully...!!</span>";
-}
-else{
-echo "<p>Insertion Failed <br/> Some Fields are Blank....!!</p>";   
-}
+    // execute the query
+    $stmt->execute();
 
-}
-//Closing Connection with Server
-mysqli_close($connection);
-header('Location: index_approve.php');
+    // echo a message to say the UPDATE succeeded
+    echo $stmt->rowCount() . " records UPDATED successfully";
+    }
+catch(PDOException $e)
+    {
+    echo $sql . "<br>" . $e->getMessage();
+    }
+
+$conn = null;
 ?>

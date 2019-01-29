@@ -407,7 +407,7 @@ class User{
     $users = [];
 	if($_SESSION['user']['user_role'] == 'user'){
         $users = $this->listUsers();
-        header("location: ./user");
+        header("location: ./dist/list");
       
           
         

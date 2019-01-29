@@ -74,6 +74,7 @@ session_start();
                                 <li><a href=".././listing-row.php">Add Listing</a></li>
 
                                 <li><a href=".././index_approve.php">Status</a></li>
+                                <li><a href=".././user-role.php">User Role</a></li>
 
                             </ul>
                         </nav>
@@ -142,7 +143,7 @@ session_start();
                                                 <a href="base_pages_listfile.php">Profile</a>
                                             </li>
                                             <li>
-                                                <a href=".././logout.php">Logout</a>
+                                                <a href="../.././logout.php">Logout</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -205,7 +206,6 @@ session_start();
                             <div class="card-header">
                                 <h4>Your Listing</h4>
                             </div>
-                            <span style="float: right; padding-right: 40px;"><a href="../listing-row.php" class="btn btn-primary">Add New</a></span>
                             <div class="card-block">
                                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
                                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
@@ -215,14 +215,14 @@ session_start();
                                             <th>Title</th>
                                             <th class="hidden-xs" style="width: 20%;">Description</th>
                                             <th class="text-center" style="width: 20%;">Location</th>
-                                            <th>Action</th>
+                                            <th>View</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
 			<?php
 				
-				$conn = mysqli_connect('localhost', 'root', '', 'sms');
+                $conn = mysqli_connect('localhost', 'root', '', 'sms');
 				$query=mysqli_query($conn,"select * from `list` where approve='approved'");
 				while($row=mysqli_fetch_array($query)){
                     ?>

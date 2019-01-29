@@ -5,6 +5,8 @@ require_once 'config.php';
 if($_SESSION["user"] == true) {
     header('Location: ./index_.php');
 }
+// Turn off all error reporting
+error_reporting(0);
 ?>
 <html>
 <head>
