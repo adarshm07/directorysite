@@ -1,6 +1,6 @@
 <?php
 include ('conn.php');
-$id=$_GET['id'];
+$id=$_POST['listID'];
 $connection = mysqli_connect("localhost", "root", "");
 //Selecting Database from Server
 $db = mysqli_select_db($connection, "sms");
@@ -10,6 +10,8 @@ $approve = $_POST['approve'];
 if($approve!=''){
 //Insert Query of SQL
 $query = $query = mysqli_query($connection, "UPDATE list SET approve = '{$approve}' WHERE id = {$id}");
+
+//$query = $query = mysqli_query($connection, "UPDATE list SET approve = 'pending' WHERE id = 50");
 echo "<br/><br/><span>Data Inserted successfully...!!</span>";
 }
 else{

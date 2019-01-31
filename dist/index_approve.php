@@ -255,9 +255,9 @@ session_start();
                                                         <td><?php echo $row['list_description']; ?></td>
                                                         <td>
                                                         <form action='db.php' name='approve' method='post'>
-                                                        
+                                                        <input type='hidden' name='listID' value = "<?php echo $row['id']; ?>"/>
                                                         <select name='approve' class="form-control margin-bottom-10">
-                                                            <option value=''><?php echo $row['approve']; ?></option>
+                                                            <option value='<?php echo $row['approve']; ?>' selected><?php echo $row['approve']; ?></option>
                                                             <option name='approve' value='Approved'>Approved</option>
                                                             <option name='approve' value='Pending'>Pending</option>
                                                             <option name='approve' value='Declined'>Declined</option>
