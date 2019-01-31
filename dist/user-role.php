@@ -231,34 +231,7 @@ session_start();
                             <div class="card-block">
                                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
                                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                                <?php
-//Establishing Connection with Server
-$connection = mysqli_connect("localhost", "root", "");
-//Selecting Database from Server
-$db = mysqli_select_db($connection, "sms");
-if(isset($_POST['submit'])){
-
-//Fetching variables of the form which travels in URL
-$id = isset($_POST['id']) ? $_POST['id'] : '';
-$user_role = isset($_POST['user_role']) ? $_POST['user_role'] : '';
-
-if($user_role != 'useradmin'){
-//Insert Query of SQL
-$query = mysqli_query($connection, "UPDATE users SET user_role = '$user_role' where id={$id}");
-echo " 
-<div class='alert alert-info' style='padding: 20px; margin: 20px;'>
-<span>Updated.</span> 
-      </div>";
-}
-else{
-echo "
-<div class='alert alert-info' style='padding: 20px; margin: 20px;'><p>Insertion Failed, Some Fields are Blank.</p>
-</div>";   
-}
-
-}
-?>
-
+                                
                                     <thead>
                                         <tr>
                                             <th class="text-center">User ID</th>
@@ -280,14 +253,13 @@ echo "
                                                         <td><?php echo $row['fname'] .' '. $row['lname']; ?></td>
                                                         <td><?php echo $row['email']; ?></td>
                                                         <td>
-                                                        <form action='user-role.php' id='user_role' name='user_role' method='post'>
-                                                        
+                                                        <form action='userRole.php' name='user_role' method='post'>
+                                                        <input type='hidden' name='userID' value = "<?php echo $row['id']; ?>"/>
                                                         <select class="form-control margin-bottom-10">
-                                                        
-                                                            <option>Current role: <?php echo $row['user_role']; ?></option>
+                                                            <option value='<?php echo $row['user_role']; ?>' selected><?php echo $row['user_role']; ?></option>
                                                             <option name='user_role' id='user_role' value='2'>Admin</option>
                                                             <option name='user_role' id='user_role' value='user'>User</option>
-                                                </select>
+                                                        </select>
                                                         </td>
                                                         <th><input class="btn btn-success" style="float: right;" type="submit" name="submit" value="Submit" /></th>
                                                         <td>
@@ -346,9 +318,7 @@ $(document).ready(function(){
   });
 });
 </script>
-<?php
-mysqli_close($connection);
-?>
+
     </body>
 
 </html>

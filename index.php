@@ -101,7 +101,7 @@ include('conn.php');
 
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };   
   
-$sql = "SELECT * FROM list ORDER BY id";  
+$sql = "SELECT * FROM list ORDER BY id LIMIT 3";  
 $rs_result = mysqli_query($conn, $sql); 
 ?>
 

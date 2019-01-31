@@ -118,7 +118,8 @@ mysqli_close($connection);
                 <!--Title-->
             <a href="#" data-toggle="tooltip" data-placement="top" title="Name of the Business"></a>
             <label for="usr">Title <small>*</small></label>
-            <input type="text" name="list_title" class="form-control margin-bottom-10 error-msg" value="<?php if (isset($_POST['list_tagline'])) echo $_POST['list_tagline']; ?>" placeholder="Tagline">
+            <input type="text" name="list_title" class="form-control margin-bottom-10 error-msg" value="<?php if (isset($_POST['list_title'])) echo $_POST['list_title']; ?>" placeholder="Tagline">
+            <input type="text" name="list_tagline" class="form-control margin-bottom-10 error-msg" value="<?php if (isset($_POST['list_tagline'])) echo $_POST['list_tagline']; ?>" placeholder="Tagline">
             <div class="form-group">
             <input type="file" name="image" id="image" />
           </div>

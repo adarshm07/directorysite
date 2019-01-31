@@ -258,7 +258,9 @@ session_start();
 						<td><?php echo $row['lname']; ?></td>
 						<td><?php echo $row['email']; ?></td>
 						<td>
-							<center><a href="#edit<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-warning"><i class="ion-edit"></i></a>
+							<center>
+                            <button class="btn" data-toggle="modal" data-target="#modal-normal" type="button"><i class="ion-search"></i></button>    
+                            <a href="#edit<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-warning"><i class="ion-edit"></i></a>
 							<a href="#del<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default"><i class="ion-close"></i></a></center>
 							<?php include('button.php'); ?>
                             
@@ -269,7 +271,33 @@ session_start();
 			
 			?>
 			</tbody>
-		</table>
+        </table>
+                    </div>
+                    <?php
+				
+				$conn = mysqli_connect('localhost', 'root', '', 'sms');
+                    ?>
+                    <div class="modal" id="modal-normal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="card-header bg-green bg-inverse">
+                                    <h4><?php echo $row['fname']; ?></h4>
+                                    <ul class="card-actions">
+                                        <li>
+                                            <button data-dismiss="modal" type="button"><i class="ion-close"></i></button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-block">
+                                    <p><?php echo $row['email']; ?></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-sm btn-app" type="button" data-dismiss="modal"><i class="ion-checkmark"></i> Ok</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
         <?php include('add_modal.php'); ?>
 	</div>
 </div>

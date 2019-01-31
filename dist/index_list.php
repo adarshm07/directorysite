@@ -1,6 +1,4 @@
 <?php
-require_once 'user.php';
-require_once 'conn.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -38,6 +36,9 @@ session_start();
         <link rel="stylesheet" id="css-app" href="assets/css/app.css" />
         <link rel="stylesheet" id="css-app-custom" href="assets/css/app-custom.css" />
         <!-- End Stylesheets -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
 
     <body class="app-ui layout-has-drawer layout-has-fixed-header">
@@ -75,6 +76,10 @@ session_start();
                                 <li class="nav-item nav-drawer-header">Admin</li>
 
                                 <li><a href=".././listing-row.php"><i class="ion-ios-pen"></i> Add Listing</a></li>
+
+                                <li><a href="./index_approve.php">Status</a></li>
+                                
+                                <li><a href="./user-role.php">User Role</a></li>
 
                             </ul>
                         </nav>
@@ -226,98 +231,32 @@ session_start();
                                 </a>
                             </div>
                                             </div>
-                                            <div class="card">
-                            <div class="card-header">
-                                <h4>Your Listing</h4>
+                                            <div class="row">
+                               
+                                        <button class="btn btn-app btn-block" data-toggle="modal" data-target="#modal-normal" type="button">Launch Modal</button>
+                            <div class="container-fluid">
+                            <div class="modal" id="modal-large" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="card-header bg-green bg-inverse">
+                                    <h4>Terms &amp; Conditions</h4>
+                                    <ul class="card-actions">
+                                        <li>
+                                            <button data-dismiss="modal" type="button"><i class="ion-close"></i></button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-block">
+                                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant
+                                        quis dictumst proin odio sagittis purus mi, nec taciti vestibulum quis in sit varius lorem sit metus mi.</p>
+                                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant
+                                        quis dictumst proin odio sagittis purus mi, nec taciti vestibulum quis in sit varius lorem sit metus mi.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-sm btn-app" type="button" data-dismiss="modal"><i class="ion-checkmark"></i> Ok</button>
+                                </div>
                             </div>
-                            <div class="card-block">
-                                <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
-                                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">List ID</th>
-                                            <th>Title</th>
-                                            <th class="hidden-xs" style="width: 20%;">Description</th>
-                                            <th class="text-center" style="width: 20%;">Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                                    
-                                                <?php
-                                                $conn = mysqli_connect('localhost', 'root', '', 'sms');
-                                                $query=mysqli_query($conn,"select * from `list`");
-                                                while($row=mysqli_fetch_array($query)){
-                                                    ?>
-                                                    <tr>
-                                                        <td><?php echo $row['id']; ?></td>
-                                                        <td><?php echo $row['list_title']; ?></td>
-                                                        <td><?php echo $row['list_description']; ?></td>
-                                                        <td>
-                                                        <form action='db.php' name='approve' method='post'>
-                                                        <input type='hidden' name='listID' value = "<?php echo $row['id']; ?>"/>
-                                                        <select name='approve' class="form-control margin-bottom-10">
-                                                            <option value='<?php echo $row['approve']; ?>' selected><?php echo $row['approve']; ?></option>
-                                                            <option name='approve' value='Approved'>Approved</option>
-                                                            <option name='approve' value='Pending'>Pending</option>
-                                                            <option name='approve' value='Declined'>Declined</option>
-                                                </select>
-                                                        </td>
-                                                        <th><input class="btn btn-success" style="float: right;" type="submit" name="submit" value="Submit" /></th>
-                                                            </form>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                            ?>
-                                            </tbody>
-                                        </table>
-
-        <div class="app-ui-mask-modal">
-        </div>
-        <!-- End Apps Modal -->
-           
-        </div>
-        </div>
-
-        <!-- AppUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js -->
-        <script src="assets/js/core/jquery.min.js"></script>
-        <script src="assets/js/core/bootstrap.min.js"></script>
-        <script src="assets/js/core/jquery.slimscroll.min.js"></script>
-        <script src="assets/js/core/jquery.scrollLock.min.js"></script>
-        <script src="assets/js/core/jquery.placeholder.min.js"></script>
-        <script src="assets/js/app.js"></script>
-        <script src="assets/js/app-custom.js"></script>
-
-        <!-- Page Plugins -->
-        <script src="assets/js/plugins/slick/slick.min.js"></script>
-        <script src="assets/js/plugins/chartjs/Chart.min.js"></script>
-        <script src="assets/js/plugins/flot/jquery.flot.min.js"></script>
-        <script src="assets/js/plugins/flot/jquery.flot.pie.min.js"></script>
-        <script src="assets/js/plugins/flot/jquery.flot.stack.min.js"></script>
-        <script src="assets/js/plugins/flot/jquery.flot.resize.min.js"></script>
-
-        <script src="assets/js/pages/base_tables_datatables.js"></script>
-        <script src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-        <!-- Page JS Code -->
-        <script src="assets/js/pages/index.js"></script>
-        <script>
-            $(function()
-            {
-                // Init page helpers (Slick Slider plugin)
-                App.initHelpers('slick');
-            });
-        </script>
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
- 
-    </body>
-
-</html>
+                        </div>
+                    </div>
+                                            </div>
