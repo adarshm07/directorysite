@@ -244,7 +244,7 @@ $user_role = isset($_POST['user_role']) ? $_POST['user_role'] : '';
 
 if($user_role != 'useradmin'){
 //Insert Query of SQL
-$query = mysqli_query($connection, "UPDATE users SET user_role = '$user_role' where id = '$id'");
+$query = mysqli_query($connection, "UPDATE users SET user_role = '$user_role' where id={$id}");
 echo " 
 <div class='alert alert-info' style='padding: 20px; margin: 20px;'>
 <span>Updated.</span> 

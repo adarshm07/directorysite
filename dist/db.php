@@ -1,30 +1,22 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "sms";
-
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $approve='approve';
-    $id='id';
-    $sql = "UPDATE list SET approve='Approved'";
-
-    // Prepare statement
-    $stmt = $conn->prepare($sql);
-
-    // execute the query
-    $stmt->execute();
-
-    // echo a message to say the UPDATE succeeded
-    echo $stmt->rowCount() . " records UPDATED successfully";
-    }
-catch(PDOException $e)
-    {
-    echo $sql . "<br>" . $e->getMessage();
-    }
-
-$conn = null;
+include ('conn.php');
+$id=$_GET['id'];
+$connection = mysqli_connect("localhost", "root", "");
+//Selecting Database from Server
+$db = mysqli_select_db($connection, "sms");
+if(isset($_POST['submit'])){
+//Fetching variables of the form which travels in URL
+$approve = $_POST['approve'];
+if($approve!=''){
+//Insert Query of SQL
+$query = mysqli_query($connection, "insert into list(approve) values('$approve') where id={$id}");
+echo "<br/><br/><span>Data Inserted successfully...!!</span>";
+}
+else{
+echo "<p>Insertion Failed <br/> Some Fields are Blank....!!</p>";   
+}
+}
+//Closing Connection with Server
+mysqli_close($connection);
+header('Location: index_approve.php');
 ?>
