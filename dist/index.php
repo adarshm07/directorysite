@@ -276,6 +276,9 @@ session_start();
                     <?php
 				
 				$conn = mysqli_connect('localhost', 'root', '', 'sms');
+                $query=mysqli_query($conn,"SELECT * FROM `users` WHERE id = `$id` ");
+                
+				while($row=mysqli_fetch_array($query)){
                     ?>
                     <div class="modal" id="modal-normal" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog">
@@ -297,7 +300,10 @@ session_start();
                                 </div>
                             </div>
                         </div>
-                    </div>        
+                    </div>
+                    <?php
+                }
+                ?>
         <?php include('add_modal.php'); ?>
 	</div>
 </div>
