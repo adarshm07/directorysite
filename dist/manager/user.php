@@ -133,8 +133,8 @@ class User{
         $message = '
         
         ######################
-        Email: '.$email['email'];'
-        Password: '.$password['password'];'
+        Email:
+        Password:
         ######################
         
         Please confirm you registration by pasting this code in the confirmation box: '.$code['confirm_code'];
@@ -405,9 +405,12 @@ class User{
         header("location: ./dist_.php");
     }
     $users = [];
-	if($_SESSION['user']['user_role'] == 'user'){
+	if($_SESSION['user']['user_role'] == 1){
         $users = $this->listUsers();
-        header("location: ./dist/list");
+        header("location: ./inc/userpage.php");
+      
+          
+        
       }
     }
 
@@ -460,7 +463,17 @@ private function checktitle($title){
         return false;
     }
 }
-/**public function addlisting() {
+public function addlisting() {
     print $this->render(addlisting);
-}*/
 }
+}
+function get_avatar_img_url() {
+    $email = get_the_author_meta( 'email' );
+   
+    $urlg = 'http://gravatar.com/avatar/' . md5( $email );
+    $urlg = add_query_arg( array(
+      's' => 80,
+      'd' => 'mm',
+    ), $urlg );
+    return esc_url_raw( $urlg );
+  }
