@@ -143,7 +143,7 @@ session_start();
                                                 <a href="base_pages_listfile.php">Profile</a>
                                             </li>
                                             <li>
-                                                <a href="../.././b_owner/login/logout.php">Logout</a>
+                                                <a href="../.././b_owner/login/index.php?logout">Logout</a>
                                             </li>
                                         </ul>
                                     </li>
