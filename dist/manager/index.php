@@ -134,7 +134,7 @@ session_start();
                                                 define('conString', 'mysqli:host=localhost;dbname=sms');
                                                 define('dbUser', 'root');
                                                 define('dbPass', '');
-                                                print $_SESSION['username'];
+                                                print $_SESSION['user']['fname'];
                                                 ?>
                                              <span class="caret"></span> <i class="ion-ios-contact-outline"></i></span> 
                                         </a>

@@ -394,9 +394,9 @@ class User{
     */
     public function userPage() {
 	$users = [];
-	if($_SESSION['user']['user_role'] == 2){
-		$users = $this->listUsers();
-	}
-        print $this->render(userPage,$users);
+	if($_SESSION['user']['user_role'] == 1){
+        $users = $this->listUsers();
+        header("location: ../.././dist/manager");
+    }
     }
 }
