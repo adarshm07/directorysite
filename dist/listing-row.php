@@ -91,7 +91,10 @@ mysqli_close($conn);
 session_start();
 
 ?>
-<input type="hidden" name="user" value=" <?php echo $_SESSION['user']['id']; ?> ">
+<input type="hidden" name="user" value=" <?php
+$_GET['user']= 'id';
+$id= 'user';
+ echo $_SESSION['user']['id']; ?> ">
 
 
             <!--Location-->
@@ -221,7 +224,7 @@ $list_description = $_POST['list_description'];
 $list_location = $_POST['list_location'];
 $list_number = $_POST['list_number'];
 $cname = $_POST['cname'];
-$user = $_SESSION["user"];
+$user = $_SESSION["user"]['id'];
 
 if($list_title !=''||$list_location !=''){
 //Insert Query of SQL
