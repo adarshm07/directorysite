@@ -39,7 +39,7 @@ $(document).ready(function(){
     <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">Ty</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
@@ -87,6 +87,11 @@ while($row = mysqli_fetch_array($result))
   }
 mysqli_close($conn);
 ?>
+<?php
+session_start();
+
+?>
+<input type="hidden" name="user" value=" <?php echo $_SESSION['user']['id']; ?> ">
 
 
             <!--Location-->
@@ -216,10 +221,11 @@ $list_description = $_POST['list_description'];
 $list_location = $_POST['list_location'];
 $list_number = $_POST['list_number'];
 $cname = $_POST['cname'];
+$user = $_SESSION["user"];
 
 if($list_title !=''||$list_location !=''){
 //Insert Query of SQL
-$query = mysqli_query($connection, "insert into list(list_title, list_tagline, list_description, list_location, list_number, cname) values ('$list_title', '$list_tagline', '$list_description', '$list_location', '$list_number', '$cname')");
+$query = mysqli_query($connection, "insert into list(list_title, list_tagline, list_description, list_location, list_number, cname, user) values ('$list_title', '$list_tagline', '$list_description', '$list_location', '$list_number', '$cname', '$user')");
 echo "<br/><br/><span>Data Inserted successfully...!!</span>";
 }
 else{
