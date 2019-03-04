@@ -134,7 +134,7 @@ session_start();
                                                 define('conString', 'mysqli:host=localhost;dbname=sms');
                                                 define('dbUser', 'root');
                                                 define('dbPass', '');
-                                                print $_SESSION['user']['fname'];
+                                                print $_SESSION['user'];
                                                 ?>
                                              <span class="caret"></span> <i class="ion-ios-contact-outline"></i></span> 
                                         </a>
@@ -143,7 +143,7 @@ session_start();
                                                 <a href="base_pages_listfile.php">Profile</a>
                                             </li>
                                             <li>
-                                                <a href="../.././b_owner/login/index.php?logout">Logout</a>
+                                                <a href="../.././b owner/example/">Logout</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -221,9 +221,8 @@ session_start();
                                     <tbody>
 
 			<?php
-				
                 $conn = mysqli_connect('localhost', 'root', '', 'sms');
-				$query=mysqli_query($conn,"select * from `list` where approve='approved'");
+				$query=mysqli_query($conn,"select * from `list` where user='{$_SESSION['user']['userid']}'");
 				while($row=mysqli_fetch_array($query)){
                     ?>
 					<tr>

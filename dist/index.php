@@ -274,7 +274,6 @@ session_start();
         </table>
                     </div>
                     <?php
-                    include '.././class.user.php';
 				$id = $_POST['id'];
 				$conn = mysqli_connect('localhost', 'root', '', 'sms');
                 $query=mysqli_query($conn,"SELECT * FROM `users` WHERE id = `$id` ");
