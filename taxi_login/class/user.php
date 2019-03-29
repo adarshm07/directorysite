@@ -396,6 +396,7 @@ class User{
 	$users = [];
 	if($_SESSION['user']['user_role'] == 1){
         $users = $this->listUsers();
-        header("location: ../.././dist/manager");
+        header("location: ../.././dist/taxi");
     }
+}
 }
