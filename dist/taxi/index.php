@@ -17,7 +17,7 @@ session_start();
         <meta name="description" content="Dashboard" />
         <meta name="author" content="rustheme" />
         <meta name="robots" content="noindex, nofollow" />
-
+        
         <!-- Favicons -->
         <link rel="apple-touch-icon" href="assets/img/favicons/apple-touch-icon.png" />
         <link rel="icon" href="assets/img/favicons/favicon.ico" />
@@ -236,7 +236,32 @@ session_start();
 							<a href="#del<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default"><i class="ion-close"></i></a></center>
 							<?php include('button.php'); ?>
                             
+                           <!-- Email on button click --> 
+                            <form action="index.php" method="post">
+                                <input type="submit" value="Send details to embassy" />
+                                <input type="hidden" name="button_pressed" value="1" />
+                            </form>
+
+<?php
+
+if(isset($_POST['button_pressed']))
+{
+    $to      = 'adarshm954@gmail.com';
+    $subject = 'the subject';
+    $message = 'hello';
+    $headers = 'From: odnevn@gmail.com' . "\r\n" .
+        'Reply-To: odnevn@gmail.com' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+
+    mail($to, $subject, $message, $headers);
+
+    echo 'Email Sent.';
+}
+
+?>
 						</td>
+                        
+                        
                     </tr>
 					<?php
 				}

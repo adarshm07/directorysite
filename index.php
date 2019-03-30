@@ -43,8 +43,8 @@ error_reporting(0);
       <li><a href="./contact.html">Contact</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="./signup_.php"> Sign Up</a></li>
-      <li><a href="./login_.php">Login</a></li>
+      <li><a href="./register_page.php"> Sign Up</a></li>
+      <li><a href="./login_page.php">Login</a></li>
       <!--<li class="button-navbar"><a href="./add-listing.php"><i class=""></i> Add Listing</a></li>-->
     </ul>
   </div>
@@ -104,12 +104,13 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 $sql = "SELECT * FROM list ORDER BY id LIMIT 3";  
 $rs_result = mysqli_query($conn, $sql); 
 ?>
-
-<?php  
+<?php
 while ($row = mysqli_fetch_assoc($rs_result)) {
 ?>  
-<div class="clearfix card" style="width: 20rem; margin-right: 20rem;">
-	<img class="card-img-top" src="https://placehold.it/300x200" alt="">
+<div class="clearfix card" style="width: 20rem; margin-right: 20rem;">                 
+    <a href="./listing_page.php?id=<?php
+    $db = mysqli_query("SELECT * FROM list",  $conn);  
+     echo $row['id']; ?>"><img class="card-img-top" src="https://placehold.it/300x200" alt=""></a>
 	<div class="card-body">
 	  <center><h4 class="card-title"><?php echo $row['list_title']?></h4></center>
 	</div>

@@ -42,19 +42,16 @@ $(document).ready(function(){
       <a class="navbar-brand" href="#">Ty</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
+      <li class="active"><a href=".././">Home</a></li>
+      <li class=""><a href=".././about.html">About</a></li>
+      <li><a href=".././contact.html">Contact</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="./">Dashboard</a></li>
+      <li><a href=".././logout.php">Logout</a></li>
     </ul>
   </div>
 </nav>
-    
-            <div class="container"> 
-            <div class="alert alert-info" style="padding: 20px; margin: 20px;">
-                    <strong>Returning User?</strong> Please <b>Sign In</b> and if you are a New User, Continue Below and <b>register</b> along with this submission.
-                  </div>
-        </div>
 <hr width="90%" align="center">
 <div class="container">
 <div class="row" style="background-color: white; margin: 20px; padding: 40px; border-radius: 4px;">

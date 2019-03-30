@@ -63,11 +63,15 @@ session_start();
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href=".././index_.php"><i class="ion-ios-monitor-outline"></i> Home</a>
+                                    <a href="./index_.php"><i class="ion-ios-monitor-outline"></i> Home</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="./list/index.php"><i class="ion-ios-monitor-outline"></i> List</a>
+                                    <a href="./list/index.php"><i class="ion-ios-monitor-outline"></i>Manage List</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="./index.php"><i class="ion-ios-monitor-outline"></i>Manage Users</a>
                                 </li>
 
                                 <li class="nav-item nav-drawer-header">Admin</li>

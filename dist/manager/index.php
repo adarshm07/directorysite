@@ -134,7 +134,7 @@ session_start();
                                                 define('conString', 'mysqli:host=localhost;dbname=sms');
                                                 define('dbUser', 'root');
                                                 define('dbPass', '');
-                                                print $_SESSION['user'];
+                                                print $_SESSION['user']['fname'];
                                                 ?>
                                              <span class="caret"></span> <i class="ion-ios-contact-outline"></i></span> 
                                         </a>
@@ -219,10 +219,12 @@ session_start();
                                         </tr>
                                     </thead>
                                     <tbody>
-
-			<?php
+                                    <input type='hidden' name='userid' value = "<?php echo $row['id']; ?>"/>
+            <?php
+            $id = isset($_GET['id']) ? $_GET['id'] : '';
                 $conn = mysqli_connect('localhost', 'root', '', 'sms');
-				$query=mysqli_query($conn,"select * from `list` where user='{$_SESSION['user']['userid']}'");
+                
+				$query=mysqli_query($conn,"select * from `list` where userid='{$_SESSION['user']['id']}'");
 				while($row=mysqli_fetch_array($query)){
                     ?>
 					<tr>

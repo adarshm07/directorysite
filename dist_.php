@@ -7,10 +7,10 @@ if($_SESSION["user"] != true) {
     header('Location: login_.php');
     exit();
 }
-if($_SESSION['user']['user_role'] == 2){
+if($_SESSION['user']['user_role'] == '2'){
     header('Location: ./dist');
 } else {
-    header('Location: "C://wamp64/www/Thalassery-Official/login_.php"');
+    header('Location: ".././login_.php"');
     exit();
 }
 ?>
