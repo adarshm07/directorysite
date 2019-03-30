@@ -1,4 +1,6 @@
 <?php
+require_once 'user.php';
+require_once 'conn.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -58,17 +60,21 @@ session_start();
 
                                 <li class="nav-item nav-drawer-header">Main</li>
 
-                                <li class="nav-item">
-                                    <a href="../.././index_.php">Home</a>
-                                </li>
-
                                 <li class="nav-item active">
-                                    <a href="./index.php">Dashboard</a>
+                                    <a href="index.php"><i class="ion-ios-speedometer-outline"></i> Dashboard</a>
                                 </li>
 
-                                <li><a href=".././listing-row.php">Add Listing</a></li>
+                                <li class="nav-item">
+                                    <a href=".././index_.php"><i class="ion-ios-monitor-outline"></i> Home</a>
+                                </li>
 
-                                <li><a href="./index_approve.php">Status</a></li>
+                                <li class="nav-item">
+                                    <a href="./list/index.php"><i class="ion-ios-monitor-outline"></i> List</a>
+                                </li>
+
+                                <li class="nav-item nav-drawer-header">Admin</li>
+
+                                <li><a href=".././listing-row.php"><i class="ion-ios-pen"></i> Add Listing</a></li>
 
                             </ul>
                         </nav>
@@ -93,7 +99,7 @@ session_start();
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-                                <button class="pull-left hidden-lg hdden-md navbar-toggle" type="button" data-toggle="layout" data-action="sidebar_toggle">
+                                <button class="pull-left hidden-lg hidden-md navbar-toggle" type="button" data-toggle="layout" data-action="sidebar_toggle">
 					<span class="sr-only">Toggle drawer</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -120,7 +126,7 @@ session_start();
                                 <!-- .navbar-left -->
 
                                 <ul class="nav navbar-nav navbar-right navbar-toolbar hidden-sm hidden-xs">
-                                    <li class="dropdown dropdown-listfile">
+                                    <li class="dropdown dropdown-profile">
                                         <a href="javascript:void(0)" data-toggle="dropdown">
                                             <span class="m-r-sm">
                                             <?php
@@ -128,16 +134,16 @@ session_start();
                                                 define('conString', 'mysqli:host=localhost;dbname=sms');
                                                 define('dbUser', 'root');
                                                 define('dbPass', '');
-                                                print $_SESSION['user']['fname'];
+                                                print $_SESSION['user']['fname'].' '.$_SESSION['user']['lname'];
                                                 ?>
                                              <span class="caret"></span> <i class="ion-ios-contact-outline"></i></span> 
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-right">
                                             <li>
-                                                <a href="base_pages_listfile.php">Profile</a>
+                                                <a href="base_pages_profile.php">Profile</a>
                                             </li>
                                             <li>
-                                                <a href="../.././b owner/example/">Logout</a>
+                                                <a href=".././logout.php">Logout</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -158,11 +164,11 @@ session_start();
                                 <a class="card" href="javascript:void(0)">
                                     <div class="card-block clearfix">
                                         <div class="pull-right">
-                                        <p class="h6 text-muted m-t-0 m-b-xs">Your Listing</p>
+                                        <p class="h6 text-muted m-t-0 m-b-xs">Total Registered</p>
                                             <p class="h3 m-t-sm m-b-0">
                                                 <?php
                                                 $connection = mysqli_connect('localhost', 'root', '', 'sms');
-                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM list WHERE user='{$_SESSION['user']['id']}'");
+                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM users where user_role='user'");
                                                 while ($row = mysqli_fetch_array($result)) {
                                                 $var = $row['count'];
                                                 echo $var. "";
@@ -174,16 +180,18 @@ session_start();
                                     </div>
                                 </a>
                             </div>
-                            <div class="row">
+                                            
+            
+                                            <div class="row">
                             <div class="col-sm-6 col-lg-3">
                                 <a class="card" href="javascript:void(0)">
                                     <div class="card-block clearfix">
                                         <div class="pull-right">
-                                        <p class="h6 text-muted m-t-0 m-b-xs">Approved</p>
+                                        <p class="h6 text-muted m-t-0 m-b-xs">Admin</p>
                                             <p class="h3 m-t-sm m-b-0">
                                                 <?php
                                                 $connection = mysqli_connect('localhost', 'root', '', 'sms');
-                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM list WHERE approve='Approved' && user='{$_SESSION['user']['id']}'");
+                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM users where user_role='2'");
                                                 while ($row = mysqli_fetch_array($result)) {
                                                 $var = $row['count'];
                                                 echo $var. "";
@@ -195,16 +203,17 @@ session_start();
                                     </div>
                                 </a>
                             </div>
-                            <div class="row">
+                            
+                                            <div class="row">
                             <div class="col-sm-6 col-lg-3">
                                 <a class="card" href="javascript:void(0)">
                                     <div class="card-block clearfix">
                                         <div class="pull-right">
-                                        <p class="h6 text-muted m-t-0 m-b-xs">Total Categories</p>
+                                        <p class="h6 text-muted m-t-0 m-b-xs">List</p>
                                             <p class="h3 m-t-sm m-b-0">
                                                 <?php
                                                 $connection = mysqli_connect('localhost', 'root', '', 'sms');
-                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM categories");
+                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM list");
                                                 while ($row = mysqli_fetch_array($result)) {
                                                 $var = $row['count'];
                                                 echo $var. "";
@@ -229,40 +238,29 @@ session_start();
                                             <th class="text-center">List ID</th>
                                             <th>Title</th>
                                             <th class="hidden-xs" style="width: 20%;">Description</th>
-                                            <th class="text-center" style="width: 20%;">Location</th>
-                                            <th>View</th>
+                                            <th class="text-center" style="width: 20%;">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <input type='hidden' name='userid' value = "<?php echo $row['id']; ?>"/>
-            <?php
-            $id = isset($_GET['id']) ? $_GET['id'] : '';
-                $conn = mysqli_connect('localhost', 'root', '', 'sms');
-                
-				$query=mysqli_query($conn,"select * from `list` where user='{$_SESSION['user']['id']}'");
-				while($row=mysqli_fetch_array($query)){
-                    ?>
-					<tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['list_title']; ?></td>
-						<td><?php echo $row['list_description']; ?></td>
-						<td><?php echo $row['list_location']; ?></td>
-						<td>
-							<center><a href="#edit<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-warning"><i class="ion-edit"></i></a>
-							<a href="#del<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default"><i class="ion-close"></i></a></center>
-							<?php include('button.php'); ?>
-                            
-						</td>
-                    </tr>
-					<?php
-				}
-			?>
-			</tbody>
-		</table>
-	</div>
-</div>
-
-
+                                                    
+                                                <?php
+                                                $conn = mysqli_connect('localhost', 'root', '', 'sms');
+                                                $query=mysqli_query($conn,"select * from `list` where user='{$_SESSION['user']['id']}'");
+                                                while($row=mysqli_fetch_array($query)){
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $row['id']; ?></td>
+                                                        <td><?php echo $row['list_title']; ?></td>
+                                                        <td><?php echo $row['list_description']; ?></td>
+                                                        <td><?php echo $row['approve']; ?></td>
+                                                        <th></th>
+                                                            
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            ?>
+                                            </tbody>
+                                        </table>
 
         <div class="app-ui-mask-modal">
         </div>
@@ -309,6 +307,7 @@ $(document).ready(function(){
   });
 });
 </script>
+ 
     </body>
 
 </html>
