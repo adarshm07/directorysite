@@ -164,11 +164,32 @@ session_start();
                                 <a class="card" href="javascript:void(0)">
                                     <div class="card-block clearfix">
                                         <div class="pull-right">
-                                        <p class="h6 text-muted m-t-0 m-b-xs">Total Added</p>
+                                        <p class="h6 text-muted m-t-0 m-b-xs">Your Listing</p>
                                             <p class="h3 m-t-sm m-b-0">
                                                 <?php
                                                 $connection = mysqli_connect('localhost', 'root', '', 'sms');
-                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM list");
+                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM list WHERE user='{$_SESSION['user']['id']}'");
+                                                while ($row = mysqli_fetch_array($result)) {
+                                                $var = $row['count'];
+                                                echo $var. "";
+                                                } ?> </p>
+                                        </div>
+                                        <div class="pull-left m-r">
+                                            <span class="img-avatar img-avatar-48 bg-blue bg-inverse"><i class="ion-ios-bell fa-1-5x"></i></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-6 col-lg-3">
+                                <a class="card" href="javascript:void(0)">
+                                    <div class="card-block clearfix">
+                                        <div class="pull-right">
+                                        <p class="h6 text-muted m-t-0 m-b-xs">Approved</p>
+                                            <p class="h3 m-t-sm m-b-0">
+                                                <?php
+                                                $connection = mysqli_connect('localhost', 'root', '', 'sms');
+                                                $result = mysqli_query($connection, "SELECT  COUNT(*) as count FROM list WHERE approve='Approved' && user='{$_SESSION['user']['id']}'");
                                                 while ($row = mysqli_fetch_array($result)) {
                                                 $var = $row['count'];
                                                 echo $var. "";
@@ -224,7 +245,7 @@ session_start();
             $id = isset($_GET['id']) ? $_GET['id'] : '';
                 $conn = mysqli_connect('localhost', 'root', '', 'sms');
                 
-				$query=mysqli_query($conn,"select * from `list` where userid='{$_SESSION['user']['id']}'");
+				$query=mysqli_query($conn,"select * from `list` where user='{$_SESSION['user']['id']}'");
 				while($row=mysqli_fetch_array($query)){
                     ?>
 					<tr>

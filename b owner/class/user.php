@@ -399,3 +399,4 @@ class User{
         header("location: ../.././dist/manager");
     }
 }
+}
