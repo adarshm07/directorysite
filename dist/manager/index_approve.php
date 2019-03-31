@@ -61,7 +61,7 @@ session_start();
                             <li class="nav-item nav-drawer-header">Main</li>
 
 <li class="nav-item">
-    <a href="../.././index_.php">Home</a>
+    <a href="../.././index_b owner.php">Home</a>
 </li>
 
 <li class="nav-item active">

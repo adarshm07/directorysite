@@ -59,22 +59,12 @@ session_start();
                                 <li class="nav-item nav-drawer-header">Main</li>
 
                                 <li class="nav-item active">
-                                    <a href=".././index.php"><i class="ion-ios-speedometer-outline"></i> Dashboard</a>
+                                    <a href="./index.php"><i class="ion-ios-speedometer-outline"></i> Dashboard</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href=".././"><i class="ion-ios-monitor-outline"></i> Home</a>
+                                    <a href="../.././index_taxi.php"><i class="ion-ios-monitor-outline"></i> Home</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="./"><i class="ion-ios-monitor-outline"></i> List</a>
-                                </li>
-
-                                <li class="nav-item nav-drawer-header">Admin</li>
-
-                                <li><a href=".././listing-row.php">Add Listing</a></li>
-
-                                <li><a href=".././index_approve.php">Status</a></li>
-                                <li><a href=".././user-role.php">User Role</a></li>
 
                             </ul>
                         </nav>

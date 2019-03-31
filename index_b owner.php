@@ -40,7 +40,7 @@ error_reporting(0);
       <li><a href="./contact.html">Contact</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="./dist">Dashboard</a></li>
+      <li><a href="./dist/manager">Dashboard</a></li>
       <li><a href="./logout.php">Logout</a></li>
     </ul>
   </div>
