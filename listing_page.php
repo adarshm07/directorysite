@@ -75,7 +75,7 @@ if (!$connection) {
                                         ?>
                                         <?php
                                         $fetch = $info->fetch_array(); ?>
-                                        <img src="../<?php echo $fetch['id']?>" class="img-circle" alt="Avatar" width="100px" height="100px">
+                                        <img src="<?php echo $fetch['image']?>" class="img-circle" alt="Avatar" width="600px" height="400px">
                                         <h3 class="name"><?php echo $fetch['list_title'];?> </h3>
                                         <p class="name"><?php echo $fetch['list_description'];?> </p>
                                         <p class="name"><?php echo $fetch['list_location'];?> </p>

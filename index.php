@@ -101,7 +101,7 @@ include('conn.php');
 
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };   
   
-$sql = "SELECT * FROM list ORDER BY id LIMIT 3";  
+$sql = "SELECT * FROM list WHERE approve = 'Approved' ORDER BY id DESC LIMIT 3";  
 $rs_result = mysqli_query($conn, $sql); 
 ?>
 <?php
@@ -110,7 +110,7 @@ while ($row = mysqli_fetch_assoc($rs_result)) {
 <div class="clearfix card" style="width: 20rem; margin-right: 20rem;">                 
     <a href="./listing_page.php?id=<?php
     $db = mysqli_query("SELECT * FROM list",  $conn);  
-     echo $row['id']; ?>"><img class="card-img-top" src="https://placehold.it/300x200" alt=""></a>
+     echo $row['id']; ?>"><img class="card-img-top" src="<?php echo $row['image']; ?>" height="200px" width="300px"" alt=""></a>
 	<div class="card-body">
 	  <center><h4 class="card-title"><?php echo $row['list_title']?></h4></center>
 	</div>

@@ -57,7 +57,7 @@ error_reporting(0);
 	<div class="column">
         <center><h2>User</h2>
     <br>
-    <button class="btn btn-primary"><a href="./login_">Login</a></button>
+    <button class="btn btn-primary"><a href="./login_.php">Login</a></button>
     </center>
 		
 	</div>
@@ -65,14 +65,14 @@ error_reporting(0);
 	<div class="column">
     <center><h2>Business Owner</h2>
     <br>
-    <a href="" class="btn btn-primary alink">Login</a>
+    <a href="./b owner/login_.php" class="btn btn-primary alink">Login</a>
     </center>
 	</div>
   
     <div class="column">
     <center><h2>Taxi</h2>
     <br>
-    <button class="btn btn-primary"><a href="">Login</a></button>
+    <button class="btn btn-primary"><a href="taxi_login/login_.php">Login</a></button>
     </center>
 	</div>
 	

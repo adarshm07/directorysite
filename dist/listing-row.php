@@ -73,6 +73,7 @@ $(document).ready(function(){
             <label for="usr">Title <small>*</small></label>
             <input type="text" name="list_title" class="form-control margin-bottom-10 error-msg" placeholder="Name of Your Business">
             <input type="text" name="list_tagline" class="form-control margin-bottom-10 error-msg" placeholder="Tagline">
+            <input type="text" name="image" class="form-control margin-bottom-10 error-msg" placeholder="Image URL">
             <?php
 include ('./conn.php');
 $result = mysqli_query($conn, "SELECT * FROM `categories` ORDER BY `categories`.`cname` ASC");
@@ -217,6 +218,7 @@ if(isset($_POST['submit'])){
 
 $list_title = $_POST['list_title'];
 $list_tagline = $_POST['list_tagline'];
+$image = $_POST['image'];
 $list_description = $_POST['list_description'];
 $list_location = $_POST['list_location'];
 $list_number = $_POST['list_number'];
@@ -225,7 +227,7 @@ $user = $_SESSION["user"]['id'];
 
 if($list_title !=''||$list_location !=''){
 //Insert Query of SQL
-$query = mysqli_query($connection, "insert into list(list_title, list_tagline, list_description, list_location, list_number, cname, user) values ('$list_title', '$list_tagline', '$list_description', '$list_location', '$list_number', '$cname', '$user')");
+$query = mysqli_query($connection, "insert into list(list_title, list_tagline, image, list_description, list_location, list_number, cname, user) values ('$list_title', '$list_tagline', '$image', '$list_description', '$list_location', '$list_number', '$cname', '$user')");
 echo "<br/><br/><span>Data Inserted successfully...!!</span>";
 }
 else{

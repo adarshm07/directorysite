@@ -99,7 +99,7 @@ class User{
             return false;
         }
         if(!(isset($email) && isset($fname) && isset($lname) && isset($pass) && filter_var($email, FILTER_VALIDATE_EMAIL))){
-            $this->msg = 'Insert all valid requered fields.';
+            $this->msg = 'Inesrt all valid requered fields.';
             return false;
         }
 
@@ -114,7 +114,7 @@ class User{
                 return false; 
             }
         }else{
-            $this->msg = 'Inserting a new user failed.';
+            $this->msg = 'Inesrting a new user failed.';
             return false;
         }
     }
@@ -129,15 +129,9 @@ class User{
         $stmt = $pdo->prepare('SELECT confirm_code FROM users WHERE email = ? limit 1');
         $stmt->execute([$email]);
         $code = $stmt->fetch();
+
         $subject = 'Confirm your registration';
-        $message = '
-        
-        ######################
-        Email: '.$email['email'];'
-        Password: '.$password['password'];'
-        ######################
-        
-        Please confirm you registration by pasting this code in the confirmation box: '.$code['confirm_code'];
+        $message = 'Please confirm you registration by pasting this code in the confirmation box: '.$code['confirm_code'];
         $headers = 'X-Mailer: PHP/' . phpversion();
 
         if(mail($email, $subject, $message, $headers)){
@@ -170,7 +164,7 @@ class User{
 	            $_SESSION['user']['lname'] = $user['lname'];
 	            $_SESSION['user']['email'] = $user['email'];
 	            $_SESSION['user']['user_role'] = $user['user_role'];
-                return true;
+	            return true;
             }else{
             	$this->msg = 'Account activitation failed.';
             	return false;
@@ -402,60 +396,7 @@ class User{
 	$users = [];
 	if($_SESSION['user']['user_role'] == 1){
         $users = $this->listUsers();
-        header("location: .././dist/manager");
-    }
-    }
-
-    public function listing($title,$desc,$lati,$long,$proptype,$cont,$country,$minprice,$addr,$city,$email,$phone) {
-    $pdo = $this->pdo;
-    if($this->checktitle($title)){
-        $this->msg = 'This is already in the listing.';
-        return false;
-    }
-    if(!(isset($email) && isset($fname) && isset($lname) && isset($pass) && filter_var($email, FILTER_VALIDATE_EMAIL))){
-        $this->msg = 'Insert all valid requered fields.';
-        return false;
-    }
-
-    $stmt = $pdo->prepare('INSERT INTO list (title,desc,lati,long,proptype,cont,country,minprice,addr,city,email,phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)');
-    if($stmt->execute([$title,$desc,$lati,$long,$proptype,$cont,$country,$minprice,$addr,$city,$email,$phone])){
-        if($this->sendEmail($email)){
-            return true;
-        }else{
-            $this->msg = 'confirmation email sending has failed.';
-            return false; 
-        }
-    }else{
-        $this->msg = 'Inserting a new user failed.';
-        return false;
+        header("location: ../.././dist/taxi");
     }
 }
-private function sendEmail($email){
-    $pdo = $this->pdo;
-    $stmt = $pdo->prepare('SELECT title FROM list WHERE email = ? limit 1');
-    $stmt->execute([$email]);
-    $code = $stmt->fetch();
-    $subject = 'Confirm your listing';
-    $message = '$title';
-    $headers = 'X-Mailer: PHP/' . phpversion();
-
-    if(mail($email, $subject, $message, $headers)){
-        return true;
-    }else{
-        return false;
-    }
-}
-private function checktitle($title){
-    $pdo = $this->pdo;
-    $stmt = $pdo->prepare('SELECT title FROM list WHERE title = ? limit 1');
-    $stmt->execute([$title]);
-    if($stmt->rowCount() > 0){
-        return true;
-    }else{
-        return false;
-    }
-}
-/**public function addlisting() {
-    print $this->render(addlisting);
-}*/
 }
