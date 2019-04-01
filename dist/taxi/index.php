@@ -133,7 +133,7 @@ session_start();
                                                 <a href="base_pages_listfile.php">Profile</a>
                                             </li>
                                             <li>
-                                                <a href="../.././b owner/example/">Logout</a>
+                                                <a href="../.././logout.php">Logout</a>
                                             </li>
                                         </ul>
                                     </li>

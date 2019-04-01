@@ -16,7 +16,7 @@ if (!$connection) {
 ?>
 <html>
     <head>
-        <title><?php echo $list_title ?></title>
+        <title></title>
         <link rel="stylesheet" href="listing/css/bootstrap.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
@@ -32,6 +32,7 @@ if (!$connection) {
     <link rel="stylesheet" href="listing/css/magnific-popup.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="listing/css/style.css">
+    <Script src="./comments/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <div class="dark-bg sticky-top" style="background-color:blue;">
@@ -123,7 +124,11 @@ if (!$connection) {
 								<?php ?>
 								<!-- END AWARDS -->
 								
-		</div>
+        </div>
+        <?php
+include('./comments/index.php');
+?>
+       
 		<!-- END MAIN -->
 
 <?php
